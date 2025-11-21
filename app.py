@@ -44,7 +44,7 @@ def dashboard():
     return render_template('dashboard.html')
 
 @app.route('/landing')
-def landing():
+def home_landing():
     return render_template('landing_pages.html')
 
 # Upload endpoint
