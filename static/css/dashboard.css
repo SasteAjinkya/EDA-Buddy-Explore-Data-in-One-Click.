@@ -1,0 +1,423 @@
+/* ================================================= */
+/* 1. Variables & Global Styles (Material Theme)     */
+/* ================================================= */
+
+:root {
+    /* Colors */
+    --bg: #f5f7fa;
+    /* Light, clean background */
+    --card: #ffffff;
+    --primary-1: #3b5bdb;
+    /* Strong Blue/Indigo */
+    --primary-2: #0093e9;
+    /* Vibrant Cyan/Blue */
+    --primary-gradient: linear-gradient(145deg, var(--primary-1), var(--primary-2));
+    --muted: #6c757d;
+    /* Standard gray for text */
+    --text-strong: #1a1a1a;
+    --text-base: #2c2c2c;
+    --border-color: #e0e6eb;
+
+    /* Design Tokens */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+
+    /* Shadows for Material Depth */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --transition-speed: 0.2s;
+}
+
+/* Base & Reset */
+* {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    transition: background-color var(--transition-speed), color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-base);
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+    color: var(--text-strong);
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Utility Classes */
+.muted {
+    color: var(--muted);
+}
+
+.small {
+    font-size: 0.8rem;
+}
+
+/* ================================================= */
+/* 2. Layout Structure & Responsiveness              */
+/* ================================================= */
+
+.app {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    padding: 24px;
+    background: var(--card);
+    border-right: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    z-index: 10;
+}
+
+/* Main Content Area */
+.main {
+    flex: 1;
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+/* Top Bar/Header */
+.topbar {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    /* Allows wrapping on smaller screens */
+}
+
+/* Content Section (where cards live) */
+.content {
+    flex-grow: 1;
+}
+
+
+/* ================================================= */
+/* 3. Sidebar Components                             */
+/* ================================================= */
+
+/* Brand & Logo */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background: var(--primary-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 8px rgba(59, 91, 219, 0.3);
+}
+
+.brand-text {
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--text-strong);
+}
+
+/* Upload Box */
+.upload-box {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+.upload-box input[type="file"] {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    border: 2px dashed rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-sm);
+    background: #fcfcfc;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.upload-box input[type="file"]::file-selector-button {
+    background: var(--primary-1);
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background var(--transition-speed);
+}
+
+.upload-box input[type="file"]::file-selector-button:hover {
+    background: var(--primary-2);
+}
+
+/* Primary Button (Upload) */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    /* Default to full width in sidebar */
+    padding: 12px 16px;
+    margin-top: 8px;
+    border-radius: var(--radius-md);
+    border: none;
+    background: var(--primary-gradient);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(59, 91, 219, 0.3);
+    transition: all var(--transition-speed) ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(59, 91, 219, 0.45);
+}
+
+/* Sidebar Navigation Controls (Functional Buttons) */
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 30px;
+}
+
+.controls .ctrl {
+    /* Override button styling for navigation items */
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-base);
+    text-align: left;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.controls .ctrl:hover {
+    background: rgba(59, 91, 219, 0.08);
+    color: var(--primary-1);
+    border-color: rgba(59, 91, 219, 0.1);
+    transform: none;
+    /* Remove vertical transform for nav items */
+}
+
+.controls .ctrl:active {
+    background: rgba(59, 91, 219, 0.15);
+}
+
+/* Footer */
+.footer {
+    position: absolute;
+    bottom: 20px;
+    left: 24px;
+    font-size: 0.7rem;
+}
+
+
+/* ================================================= */
+/* 4. Main Content Components                        */
+/* ================================================= */
+
+/* Search Input */
+.search input {
+    padding: 10px 18px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    width: 380px;
+    background: var(--card);
+    transition: border-color var(--transition-speed) ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.search input:focus {
+    outline: none;
+    border-color: var(--primary-1);
+    box-shadow: 0 0 0 3px rgba(59, 91, 219, 0.1);
+}
+
+/* Profile Placeholder */
+.profile {
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    color: var(--primary-1);
+    background: #e8eaf6;
+    cursor: pointer;
+}
+
+/* Cards and Containers */
+.hero-card,
+#outputArea>div {
+    background: var(--card);
+    padding: 30px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 20px;
+}
+
+.hero-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    color: var(--primary-1);
+}
+
+/* Dynamic Output Area Placeholder */
+#outputArea {
+    /* This container holds dynamically generated content (tables, charts, etc.) */
+    min-height: 200px;
+}
+
+/* Placeholder styles for data elements (like a generated table or summary) */
+#outputArea table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+#outputArea th,
+#outputArea td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#outputArea th {
+    background-color: #f8f9fa;
+    color: var(--text-strong);
+    font-weight: 600;
+}
+
+#outputArea tr:nth-child(even) {
+    background-color: #fcfcfc;
+}
+
+
+@media (max-width: 1024px) {
+
+    /* Tablet/Small Desktop adjustments */
+    .main {
+        padding: 20px;
+    }
+
+    .search input {
+        width: 100%;
+        max-width: 300px;
+        /* Constrain slightly on tablet */
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Mobile/Tablet adjustments */
+    .app {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        border-radius: 0 0 20px 20px;
+        border-right: none;
+        box-shadow: var(--shadow-lg);
+        position: sticky;
+    }
+
+    .brand {
+        margin-bottom: 15px;
+    }
+
+    .upload-box {
+        padding: 10px 0 15px;
+    }
+
+    /* Adjust upload components for vertical layout */
+    .upload-box input[type="file"] {
+        margin: 10px 0;
+    }
+
+    .upload-box .btn {
+        margin-top: 0;
+    }
+
+    /* Force controls into a responsive grid/row */
+    .controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .controls .ctrl {
+        flex-grow: 1;
+        min-width: 100px;
+        /* Minimum width for buttons */
+        padding: 10px 8px;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    .footer {
+        display: none;
+        /* Hide footer on mobile for space */
+    }
+
+    .topbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .search input {
+        width: 100%;
+        max-width: none;
+    }
+
+    .profile {
+        align-self: flex-end;
+    }
+
+    .hero-card {
+        padding: 20px;
+    }
+}
+
+
+#downloadBtn {
+    display: none;
+}

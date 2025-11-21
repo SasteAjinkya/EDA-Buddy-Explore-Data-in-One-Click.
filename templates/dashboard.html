@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+
+  <title>EDA Buddy Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">EB</div>
+        <div class="brand-text">EDA Buddy</div>
+      </div>
+      <div class="upload-box">
+        <input id="fileInput" type="file" accept=".csv" />
+        <button id="uploadBtn" class="btn">Upload</button>
+        <div id="uploadMsg" class="muted small"></div>
+      </div>
+
+      <nav class="controls">
+        <button class="ctrl btn" id="previewBtn">Preview</button>
+        <button class="ctrl btn" id="summaryBtn">Summary</button>
+        <button class="ctrl btn" id="featuresBtn">Features</button>
+        <button class="ctrl btn" id="cleanBtn">Clean</button>
+        <button class="ctrl btn" id="visualizeBtn">Visualize</button>
+        <button class="ctrl btn" id="downloadBtn">Download Cleaned</button>
+        <button class="ctrl btn" id="resetBtn">Reset</button>
+        <a href="https://www.kaggle.com/code/scratchpad/notebook093fb3f5f1/edit" target="_blank" class="ctrl btn"
+          id="KaggleBtn">🌐 Kaggle Notebook</a>
+      </nav>
+
+      <div class="footer muted small">EDA Buddy</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="profile">profile</div>
+        <a class="profile" id="homeBtn" href="{{ url_for('landing') }}">🏠︎ Home</a>
+      </header>
+
+      <section class="content" id="content">
+        <div class="hero-card">
+          <h2>Welcome to EDA Buddy</h2>
+          <p class="muted">Upload a CSV and explore powerful automated EDA & cleaning tools with a beautiful UI.</p>
+        </div>
+
+        <div id="outputArea"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+
+</html>
